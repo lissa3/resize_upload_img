@@ -1,0 +1,5 @@
+Project in vue2
+1. options axios to work out
+2. training
+A.
+B.TrainTwo = pagination
