@@ -37,7 +37,8 @@
     <div class="img-preview" v-if="imgPreview">
         <img :src="imgPreview2" alt="" style="max-width: 100%; width: 250px; object-fit: cover">
     </div>
-    <div class="resized-photo" ref="resized" >
+    <div>
+        <canvas ref="canv" style="border:1px solid;width:800px; height:600px"></canvas>
 
     </div>
     

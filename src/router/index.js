@@ -3,7 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import One from '@/components/TrainOne.vue'
 import Two from '@/components/TrainTwo.vue'
-import Photo from '@/components/LoadImg.vue'
+import MultiUpload from '@/components/MultiUploads.vue'
 import PhotoForm from '@/components/FormImage.vue'
 import PhotoFormCrop from '@/components/FormImgCrop.vue'
 
@@ -26,9 +26,9 @@ const routes = [
   component:Two
   },
   {
-  path:'/photo',
-  name:'Photo',
-  component:Photo
+  path:'/multi-photo',
+  name:'MultiUpload',
+  component:MultiUpload
   },
   {path:'/photo-form',
   name:'PhotoForm',

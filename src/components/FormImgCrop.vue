@@ -1,6 +1,9 @@
 <template>
 <div class="main">
-        <form class="user-form">
+    <div class="msg" v-if="msg" :class="`message ${err?'is-danger':'is-success'}`">
+            <div class="msg-body">{{msg}}</div>
+    </div>     
+        <form @submit.prevent="sendIt" class="user-form" enctype="multipart/form-data" >
             <div class="form-item">
                     <label class="file-select">
                         <!-- We can't use a normal button element here, as it would become the target of the label. -->
@@ -13,106 +16,144 @@
                         <input type="file" ref="upload" accept = "image/*" @change="imageSelected"/>
                     </label>
             </div>  
-            <div class="form-item">
+            <!-- <div class="form-item">
                 <label>Remove file
                     <input type="checkbox" ref="remove" @change="removeImg">
                 </label>
-            </div>      
+            </div>       -->
             <button class="form-but">Send</button>
         </form>
-    <!-- <div class="img-container" ref="fotodump">
-        <img :src="img" ref="source" alt="" class="photo-container">
-    </div>     -->
-    
-    <p>field to train</p>
-    <div class="foo">
-        <p>Do you see uploaded img?</p>
-     <!-- <img :src="newImg" alt=""> -->
-        <canvas ref="canv" style="border:1px solid;width:800px; height:600px"></canvas>
+    <div class="img-container" >
+        <p>I'm connected to id=inp. Do you see an image?</p>
+        <img :src="imgToUploadPrev" alt="" class="photo-container">
     </div>    
+    <div class="img-container" >
+        <p>Destination:</p>
+        <img :scr="destination" alt="" class="photo-container">
+    </div> 
     
 </div>
 
 </template>
 
 <script>
-// function resize(start,img, w, h) {
-//   let canvas= start;
-//   canvas.width = w;
-//   canvas.height = h;
-//   canvas.getContext('2d').drawImage(img, 0, 0, w, h);
-//   return canvas;
-// }
 // import Cropper from 'cropperjs';
+import optimizePhoto from '@/helpers/img_help.js'
+
+import axios from 'axios';
 export default {
     name:'PhotoForm',   
     data(){
         return {
             uploadIntention:false,
-            img:null,
-            
-            newImg:null,           
-            
+            img:null,            
+            newImg:null, 
+            imgToUploadPrev:null  ,
+            msg:"",
+            err:false ,
+            cropper:{},
+            destination:{},
+            zoo:{}        
                     
         }
     },
     methods:{
-        imageSelected(e){
-            // TODO: this.warning = reset before a new upload
-            this.warning =[]
-            this.uploadIntention = true;
-            this.img = this.$refs.upload.files[0];                      
-            
-            // read the file and create it's copy 
-            console.log("inital width img",this.img.size);
-            // this.newImg = new Image()
-            // this.newImg= URL.createObjectURL(this.img)
-            //this.newImg=>blob:http://127.0.0.1:8080/47005010-6fde-4060-
-            let canva = this.$refs.canv
-            // option: hard-coded
-            // canva.width = 800 ;
-            // canva.height = 600;
-            // option: dynamic  (sync with css in attr style)
-            canva.width = canva.scrollWidth;
-            canva.height = canva.scrollHeight;
-            let ctx = canva.getContext('2d');
-            let geit = 'geit.jpg'
-            // ctx.fillStyle ='#c6680f';
-            // ctx.fillRect(10,20,100,100);
-            ctx.drawImage(geit.jpg,20,30,300,500)
-            
-           
+        async imageSelected(e){            
+            this.img = this.$refs.upload.files[0]; 
+            console.log(`initial size, ${this.img.size/1000} kB or ${this.img.size/1000000} MB`)           
+           const resizedPhoto = await optimizePhoto(this.img);
+           console.log(`resized photo, ${resizedPhoto.size/1000} kB or ${resizedPhoto.size/1000000} MB`) 
+           //await uploadPhoto(resizedPhoto)    
+        }
 
-            
-            // this.cropper = new Cropper(imgCopy,{
-            //     zoomable:false,
-            //     scalable:false,
-            //     aspectRatio:1,
-            //     crop:()=>{
-            //         const canvas = this.cropper.getCroppedCanvas();
-            //         this.destination = canvas.toDataURL(urls)
-            //     }
-            // })
-            
         },
         removeImg(e){
             this.uploadIntention = false;
             this.img = null;
-            this.newImg = null
-            // this.imgPreview=null;        
-        },    
+            this.imgToUploadPrev=null;        
+        },  
+        async sendIt(){
+            try{
+                // http://127.0.0.1:8000
+                const data = new FormData();
+                data.append("ava",this.img);
+                data.append('pio',33);  
+                console.log("after append formData",data)          
+                await axios.post('http://127.0.0.0:8000/create-avatar',data) // let op: no need of {} 
+                console.log("upload Ok");
+                this.msg="Successfully uploaded your file "
+                this.img = ""
+            }  
+            catch(err) {
+                console.log("error...");
+                this.errMsg = "smth went wrong";
+                this.err= true
+            }
        
     },
-    
 }
-</script>
+     
+            
+                         
+            
+    
+
+
+
+// this.imgToUploadPrev = URL.createObjectURL(file);
+            //let reader = new FileReader();
+            // reader.readAsDataURL(image);
+            //reader.onload = (e)=>{
+                // let newCopy = new Image()
+                // newCopy.onload = ()=>{
+                //     image.width = newCopy.width
+                //     image.height = newCopy.height
+
+                //}
+                // imgCopy = e.target.result;
+                
+            //}
+                
+            //  this.cropper = new Cropper(this.img, {
+            //     aspectRatio: 1,
+            //     zoomable:false,
+            //     scalable:false,
+            //     crop:()=>{
+            //         // statdard html canvas
+            //         const canvas = this.cropper.getCroppedCanvas()
+            //         this.destination = canvas.toDataURL("image/jpg")
+            //     }
+                
+            // });    
+//this.$refs.remove.checked = false; 
+            //this.msg="";
+            //this.err = false;            
+            // const allowedTypes = ["image/jpeg","image/png","image/gif"];
+            // const MAX_SIZE = 2000000;
+// const tooBig = file.size > MAX_SIZE;
+//             if(allowedTypes.includes(file.type)&&!tooBig){
+//                 this.img = file
+//                 this.uploadIntention = true;                  
+//                 console.log("img ext allowed,size is: ",this.img.size);
+//                 this.msg = "Upload OK";
+//             }else{
+//                 this.msg = tooBig?`Too large.Max size is ${MAX_SIZE/1000}Kb`:`Only images are allowed`
+//                 this.err = true
+//             }
+</script>        
+
+            
+            
 <style>
 .foo{
     width: 500px;
     height: 700px;
 }
-.warning{
-    color:red;
+.is-danger{
+    background-color:red;
+}
+.is-success{
+    background-color:cadetblue;
 }
 /* style Digital Ocean */
 .file-select > .select-button {

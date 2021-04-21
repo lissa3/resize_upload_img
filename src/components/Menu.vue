@@ -1,8 +1,9 @@
 <template>
 <div class="menu">
+    <div class="menu-item"><router-link :to="{name:'Home'}">Home</router-link> </div>
     <div class="menu-item"><router-link :to="{name:'One'}">TrainOne</router-link> </div>
     <div class="menu-item"><router-link :to="{name:'Two'}">TrainTwo</router-link> </div>
-    <div class="menu-item" ><router-link :to="{name:'Photo'}">Load Photo</router-link></div>
+    <div class="menu-item" ><router-link :to="{name:'MultiUpload'}">Multi Upload</router-link></div>
     <div class="menu-item" ><router-link :to="{name:'PhotoForm'}">PhotoForm</router-link></div>
     <div class="menu-item"><router-link :to="{name:'PhotoFormCrop'}">PhotoCrop</router-link>r</div>
     
