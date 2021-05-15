@@ -1,30 +1,11 @@
 <template>
 <div class="main">
-    <form class="user-form">
-        <div class="form-item">
-            <label>
-                Enter your name:
-                <input type="text" v-model="name">
-            </label>
-        </div>
-        <div class="form-item">
-            <label>
-                Enter your email:
-                <input type="email" v-model="email">
-            </label>
-        </div>
-        <button class="form-but">Send</button>
-    </form>
-    <div class="home-work">
-        <h5>Home work</h5>
-        <p>Number should be max: 10, min: 1</p>
-        <span class="minus" @click="removeOne"><strong>-</strong></span>
-        <label >
-            <input type="number" v-model="num" class="house-werk-input" :min="minCount" :max="maxCount">
-        </label>
-        <span class="plus" @click="addOne"><strong>+</strong></span>
-        
-    </div>
+    <h3 :style="styleH3">Можно с помощью directive style изменть color h3 </h3>
+    <p>You may also create smth like "Change the theme</p>
+    <div>To test first step:</div>
+    <button @click="changeColor">Try it</button>
+    <h3 :style="styleH3">hghggh</h3>
+    
 
 </div>
 
@@ -35,14 +16,18 @@ export default {
     name:'One',
     data(){
         return {
-            name:'',
-            email:'',
-            num:1,
-            maxCount:10,
-            minCount:1
+            styleH3:{
+                color:""
+            }
+            
         }
     },
     methods:{
+        changeColor(){
+            
+            this.styleH3.color = "#" + Math.random().toString().slice(4,10);
+            console.log("color is",this.styleH3.color)
+        },
         removeOne(){
             if (this.num >this.minCount){
                 return this.num --;

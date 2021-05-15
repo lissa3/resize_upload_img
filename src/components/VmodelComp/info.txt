@@ -1,0 +1,8 @@
+Why:
+проблема: делаю форму и вставляю туда компоненты с input
+here: component title
+хотя у меня ессно получается закинуть через props title from
+parent, и даже с модификацией v-model in child пересылка update title
+,BUT я хочу ещё в компоненте провести валидацию input, a не только передать 
+updated value of title.
+Не получается: словить про-updated title + validation doesn't work

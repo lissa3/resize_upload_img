@@ -90,7 +90,9 @@ export default {
 
             
             
-<style>
+<style scoped>
+
+
 .wrap-del-file{
     background-color: rgb(241, 236, 236);
     padding:10px 15px;

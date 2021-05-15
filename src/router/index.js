@@ -1,24 +1,68 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
-import One from '@/components/TrainOne.vue'
+import Home from '@/views/Home.vue'
+import UserRoot from '@/components/UserManagement/UserRoot.vue'
+import ColorRoot from '@/components/colorPicker/ColorRoot.vue'
+import One from '@/components/inputs/TrainOne.vue'
 import Two from '@/components/TrainTwo.vue'
-import MultiUpload from '@/components/MultiUploads.vue'
-import PhotoForm from '@/components/FormImage.vue'
-import PhotoFormCrop from '@/components/FormImgCrop.vue'
+import MultiUpload from '@/components/img/MultiUploads.vue'
+import PhotoForm from '@/components/img/FormImage.vue'
+import PhotoFormCrop from '@/components/img/FormImgCrop.vue'
+import Watch from '@/components/Watch.vue'
+import InputSpy from '@/components/inputs/InputSpy.vue'
+import ProdList from '@/components/prods/ProdList.vue'
+// input plus
+import Parent from '@/components/VmodelComp/Parent.vue'
+import Login from '@/components/Auth/Login.vue'
+
 
 Vue.use(VueRouter)
 
-const routes = [
+const routes = [  
+  {
+    path: '/user-management',
+    name: 'UserRoot',
+    component: UserRoot
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: Login
+  },
+  {
+    path: '/color-root',
+    name: 'ColorRoot',
+    component: ColorRoot
+  },
+  {
+    path: '/problem-vmod',
+    name: 'Parent',
+    component: Parent
+  },
+  {
+    path: '/prod-list',
+    name: 'ProdList',
+    component: ProdList
+  },
   {
     path: '/',
     name: 'Home',
     component: Home
   },
   {
+  path:'/input-spy',
+  name:'InputSpy',
+  component:InputSpy
+  },
+  {
   path:'/one',
   name:'One',
   component:One
+  },
+  {
+  path:'/watch',
+  name:'Watch',
+  component:Watch
   },
   {
   path:'/two',

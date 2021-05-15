@@ -11,15 +11,18 @@
 </template>
 
 <script>
-import FormImgCrop from '@/components/FormImgCrop.vue'
-import MultiUploads from '@/components/MultiUploads.vue'
+import FormImgCrop from '@/components/img/FormImgCrop.vue'
+import MultiUploads from '@/components/img/MultiUploads.vue'
 
 
 
 
 export default {
   name: 'Home',
-  components:{FormImgCrop,MultiUploads}
+  components:{FormImgCrop,MultiUploads},
+  created(){
+        console.log("component home created")
+    },
   
 }
 </script>
