@@ -14,11 +14,18 @@ import ProdList from '@/components/prods/ProdList.vue'
 // input plus
 import Parent from '@/components/VmodelComp/Parent.vue'
 import Login from '@/components/Auth/Login.vue'
+// stars
+import MyStar from '@/components/Stars/RootStar.vue'
 
 
 Vue.use(VueRouter)
 
 const routes = [  
+  {
+    path: '/give-star',
+    name: 'MyStar',
+    component: MyStar
+  },
   {
     path: '/user-management',
     name: 'UserRoot',

@@ -1,10 +1,12 @@
 <template>
 <div>
     <div class="mymenu">
-        <div class="mymenu-item"><router-link :to="{name:'UserRoot'}">Management</router-link> </div>
+
+        <div class="mymenu-item"><router-link :to="{name:'MyStar'}">Star Life</router-link> </div>
+        <!-- <div class="mymenu-item"><router-link :to="{name:'UserRoot'}">Management</router-link> </div> -->
         <!-- <div class="mymenu-item"><router-link :to="{name:'Login'}">Login</router-link> </div> -->
-        <div class="menu-item"><router-link :to="{name:'Parent'}">Problem V-mod</router-link> </div>
-        <div class="mymenu-item"><router-link :to="{name:'ColorRoot'}">ColorPicker</router-link> </div>
+        <!-- <div class="menu-item"><router-link :to="{name:'Parent'}">Problem V-mod</router-link> </div> -->
+        <!-- <div class="mymenu-item"><router-link :to="{name:'ColorRoot'}">ColorPicker</router-link> </div> -->
         <div class="mymenu-item"><router-link :to="{name:'Home'}">Home</router-link> </div>
         <!-- <div class="menu-item"><router-link :to="{name:'ProdList'}">ProdList</router-link> </div> -->
         <!-- <div class="menu-item"><router-link :to="{name:'InputSpy'}">InputSpy</router-link> </div> -->

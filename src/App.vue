@@ -6,12 +6,12 @@
     </div>     
     <div class="container">      
       <div class="myrow">
-        <div class="left">Left</div>
+        <!-- <div class="left">Left</div> -->
        <div class="midden">
           <router-view/>
         
        </div>         
-      <div class="right">Right</div>
+      <!-- <div class="right">Right</div> -->
       </div>
     </div>     
   </div>
