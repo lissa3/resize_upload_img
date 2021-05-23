@@ -34,28 +34,21 @@
             
         </div>
          <hr> 
-         <div>FF: {{floatFlag}}</div>               
-            <!-- <p class="px-1 point"><b-icon-star-fill></b-icon-star-fill></p>
-            <p class="px-1 point"><b-icon-star-fill></b-icon-star-fill></p>
-            <p class="px-1 point"><b-icon-star-fill></b-icon-star-fill></p>
-            <p class="px-1 point"><b-icon-star></b-icon-star></p> -->
-            <!-- <p class="px-1 point"><b-icon-star-half></b-icon-star-half></p> -->
-        <!-- <single-star></single-star>
+                        
+        <h5>Give star</h5>    
         <single-star></single-star>
-        <single-star></single-star>
-        <single-star></single-star>
-        <single-star></single-star>
-              -->
+        
+             
         
     </div>
 </template>
 
 <script>
-import SingleStar from '@/components/Stars/SingleStar.vue'
+import SingleStar from '@/components/Stars/GiveStar.vue'
 export default {
     name:"MyStar",
     components:{
-        // SingleStar
+        SingleStar
     },
     data(){
         return { 

@@ -15,7 +15,7 @@ import ProdList from '@/components/prods/ProdList.vue'
 import Parent from '@/components/VmodelComp/Parent.vue'
 import Login from '@/components/Auth/Login.vue'
 // stars
-import MyStar from '@/components/Stars/RootStar.vue'
+import MyStar from '@/components/Stars/DisplayStar.vue'
 
 
 Vue.use(VueRouter)
